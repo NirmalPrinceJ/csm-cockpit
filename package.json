@@ -6,7 +6,8 @@
   "scripts": {
     "build": "coda build src/pack.ts",
     "validate": "coda validate src/pack.ts",
-    "execute": "coda execute src/pack.ts"
+    "execute": "coda execute src/pack.ts",
+    "test": "TS_NODE_TRANSPILE_ONLY=1 npx ts-node src/testing.ts"
   },
   "keywords": ["coda", "pack", "mulesoft", "csm", "customer-success"],
   "author": "MuleSoft CSM Team",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.10.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
 }
