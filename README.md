@@ -101,6 +101,11 @@ npx coda upload src/pack.ts
 npm run execute SyncAccountMaster
 ```
 
+### Run Schema Sanity Checks
+```bash
+npm run test
+```
+
 ## Phase 1 Implementation
 
 **Current State**: All 14 sync tables return empty arrays for manual data entry.
