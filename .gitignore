@@ -1,0 +1,4 @@
+node_modules/
+.coda.json
+.DS_Store
+.env

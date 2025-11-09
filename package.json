@@ -1,17 +1,21 @@
 {
-  "name": "coda-strategic-tracking-fresh",
+  "name": "mulesoft-csm-intelligence",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Strategic Account Tracking for MuleSoft Customer Success",
+  "main": "src/pack.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "coda build src/pack.ts",
+    "validate": "coda validate src/pack.ts",
+    "execute": "coda execute src/pack.ts"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["coda", "pack", "mulesoft", "csm", "customer-success"],
+  "author": "MuleSoft CSM Team",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@codahq/packs-sdk": "^1.12.1",
+    "@codahq/packs-sdk": "^1.12.1"
+  },
+  "devDependencies": {
     "@types/node": "^24.10.0",
     "typescript": "^5.9.3"
   }
