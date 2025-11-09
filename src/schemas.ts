@@ -49,7 +49,7 @@ export const AccountSchema = coda.makeObjectSchema({
     healthScore: { type: coda.ValueType.Number },
     riskLevel: { type: coda.ValueType.String },
     spRating: { type: coda.ValueType.String },
-    customerRevenue: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    customerAnnualRevenue: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
     employeeCount: { type: coda.ValueType.Number },
     geography: { type: coda.ValueType.String },
     primaryContactName: { type: coda.ValueType.String },
@@ -84,8 +84,8 @@ export const BusinessContextSchema = coda.makeObjectSchema({
     businessModel: { type: coda.ValueType.String },
     marketPosition: { type: coda.ValueType.String },
     operatingEnvironment: { type: coda.ValueType.String },
-    keyChallenges: { type: coda.ValueType.String },
-    strategicPriorities: { type: coda.ValueType.String },
+    keyBusinessChallenges: { type: coda.ValueType.String },
+    strategicPrioritiesCurrentYear: { type: coda.ValueType.String },
     digitalMaturity: { type: coda.ValueType.String },
     itComplexityScore: { type: coda.ValueType.Number },
     legacySystemCount: { type: coda.ValueType.Number },
@@ -95,7 +95,12 @@ export const BusinessContextSchema = coda.makeObjectSchema({
   },
   idProperty: "contextId",
   displayProperty: "account",
-  featuredProperties: ["account", "digitalMaturity", "strategicPriorities", "keyChallenges"],
+  featuredProperties: [
+    "account",
+    "digitalMaturity",
+    "strategicPrioritiesCurrentYear",
+    "keyBusinessChallenges",
+  ],
 });
 
 // ===========================================================================
@@ -113,8 +118,8 @@ export const StrategicObjectiveSchema = coda.makeObjectSchema({
     quantifiedGoal: { type: coda.ValueType.String },
     targetDate: { type: coda.ValueType.String, codaType: coda.ValueHintType.Date },
     businessOwner: { type: coda.ValueType.String },
-    businessValue: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
-    mulesoftRelevance: { type: coda.ValueType.String },
+    businessValueUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    muleSoftRelevance: { type: coda.ValueType.String },
     status: { type: coda.ValueType.String },
     progressPercent: { type: coda.ValueType.Number },
     lastReviewDate: { type: coda.ValueType.String, codaType: coda.ValueHintType.Date },
@@ -125,7 +130,13 @@ export const StrategicObjectiveSchema = coda.makeObjectSchema({
   },
   idProperty: "objectiveId",
   displayProperty: "objectiveName",
-  featuredProperties: ["objectiveName", "status", "progressPercent", "businessValue", "targetDate"],
+  featuredProperties: [
+    "objectiveName",
+    "status",
+    "progressPercent",
+    "businessValueUsd",
+    "targetDate",
+  ],
 });
 
 // ===========================================================================
@@ -147,7 +158,7 @@ export const CapabilitySchema = coda.makeObjectSchema({
     gapStatus: { type: coda.ValueType.String },
     linkedObjectives: { type: coda.ValueType.String },
     supportingValueStreams: { type: coda.ValueType.String },
-    investmentRequired: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    investmentRequiredUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
     priority: { type: coda.ValueType.String },
     implementationStatus: { type: coda.ValueType.String },
     businessImpact: { type: coda.ValueType.String },
@@ -168,7 +179,7 @@ export const ValueStreamSchema = coda.makeObjectSchema({
     streamId: { type: coda.ValueType.String, required: true },
     account: { type: coda.ValueType.String, required: true },
     valueStreamName: { type: coda.ValueType.String, required: true },
-    businessProcess: { type: coda.ValueType.String },
+    businessProcess: { type: coda.ValueType.String, required: true },
     processOwner: { type: coda.ValueType.String },
     linkedObjectives: { type: coda.ValueType.String },
     enabledCapabilities: { type: coda.ValueType.String },
@@ -180,17 +191,28 @@ export const ValueStreamSchema = coda.makeObjectSchema({
     cycleTimeTargetHours: { type: coda.ValueType.Number },
     cycleTimeReductionPercent: { type: coda.ValueType.Number },
     cycleTimeProgress: { type: coda.ValueType.String },
-    costPerTransactionBefore: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
-    costPerTransactionAfter: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
-    annualCostSavings: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
-    revenueImpact: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
-    totalBusinessValue: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    costPerTransactionBeforeUsd: {
+      type: coda.ValueType.Number,
+      codaType: coda.ValueHintType.Currency,
+    },
+    costPerTransactionAfterUsd: {
+      type: coda.ValueType.Number,
+      codaType: coda.ValueHintType.Currency,
+    },
+    annualCostSavingsUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    revenueImpactUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    totalBusinessValueUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
     customerSatisfactionScore: { type: coda.ValueType.Number },
     operationalRiskLevel: { type: coda.ValueType.String },
   },
   idProperty: "streamId",
   displayProperty: "valueStreamName",
-  featuredProperties: ["valueStreamName", "totalBusinessValue", "cycleTimeReductionPercent", "annualCostSavings"],
+  featuredProperties: [
+    "valueStreamName",
+    "totalBusinessValueUsd",
+    "cycleTimeReductionPercent",
+    "annualCostSavingsUsd",
+  ],
 });
 
 // ===========================================================================
@@ -216,7 +238,7 @@ export const APISchema = coda.makeObjectSchema({
     errorRatePercent: { type: coda.ValueType.Number },
     uptimePercent: { type: coda.ValueType.Number },
     consumingApplications: { type: coda.ValueType.Number },
-    revenueAttribution: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    revenueAttributionUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
     businessCriticality: { type: coda.ValueType.String },
     businessValueScore: { type: coda.ValueType.Number },
     healthStatus: { type: coda.ValueType.String },
@@ -278,13 +300,13 @@ export const InitiativeSchema = coda.makeObjectSchema({
     targetCompletionDate: { type: coda.ValueType.String, codaType: coda.ValueHintType.Date },
     actualCompletionDate: { type: coda.ValueType.String, codaType: coda.ValueHintType.Date },
     daysOverdue: { type: coda.ValueType.Number },
-    investmentAmount: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
-    mulesoftServices: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
-    customerInvestment: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
-    expectedAnnualBenefit: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    investmentAmountUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    muleSoftServicesUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    customerInvestmentUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    expectedAnnualBenefitUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
     expectedPaybackMonths: { type: coda.ValueType.Number },
     threeYearROIPercent: { type: coda.ValueType.Number },
-    realizedAnnualBenefit: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    realizedAnnualBenefitUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
     actualROIPercent: { type: coda.ValueType.Number },
     successCriteria: { type: coda.ValueType.String },
     ownerMuleSoft: { type: coda.ValueType.String },
@@ -294,7 +316,13 @@ export const InitiativeSchema = coda.makeObjectSchema({
   },
   idProperty: "initiativeId",
   displayProperty: "initiativeName",
-  featuredProperties: ["initiativeName", "status", "priority", "threeYearROIPercent", "targetCompletionDate"],
+  featuredProperties: [
+    "initiativeName",
+    "status",
+    "priority",
+    "threeYearROIPercent",
+    "targetCompletionDate",
+  ],
 });
 
 // ===========================================================================
@@ -317,7 +345,7 @@ export const RiskSchema = coda.makeObjectSchema({
     probabilityScore: { type: coda.ValueType.Number },
     riskScore: { type: coda.ValueType.Number },
     riskLevel: { type: coda.ValueType.String },
-    potentialBusinessImpact: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    potentialBusinessImpactUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
     potentialOperationalImpact: { type: coda.ValueType.String },
     mitigationStrategy: { type: coda.ValueType.String },
     mitigationInitiative: { type: coda.ValueType.String },
@@ -329,7 +357,7 @@ export const RiskSchema = coda.makeObjectSchema({
   },
   idProperty: "riskId",
   displayProperty: "riskTitle",
-  featuredProperties: ["riskTitle", "riskLevel", "riskScore", "status", "mitigationStrategy"],
+  featuredProperties: ["riskTitle", "riskLevel", "riskScore", "potentialBusinessImpactUsd"],
 });
 
 // ===========================================================================
@@ -411,14 +439,20 @@ export const SuccessPlanSchema = coda.makeObjectSchema({
     top3Risks: { type: coda.ValueType.String },
     overallHealthScore: { type: coda.ValueType.Number },
     renewalRiskLevel: { type: coda.ValueType.String },
-    expansionOpportunity: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
+    expansionOpportunityUsd: { type: coda.ValueType.Number, codaType: coda.ValueHintType.Currency },
     executiveSponsorCustomer: { type: coda.ValueType.String },
     executiveSponsorMuleSoft: { type: coda.ValueType.String },
     nextQBRDate: { type: coda.ValueType.String, codaType: coda.ValueHintType.Date },
   },
   idProperty: "successPlanId",
   displayProperty: "planPeriod",
-  featuredProperties: ["planPeriod", "overallHealthScore", "renewalRiskLevel", "nextQBRDate"],
+  featuredProperties: [
+    "planPeriod",
+    "overallHealthScore",
+    "renewalRiskLevel",
+    "expansionOpportunityUsd",
+    "nextQBRDate",
+  ],
 });
 
 // ===========================================================================
