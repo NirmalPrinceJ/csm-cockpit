@@ -9,6 +9,10 @@ created: 2025-11-09
 > [!abstract] Summary
 > Two-phase implementation blueprint for building the MuleSoft Customer Success Intelligence Platform (CSIP) on Coda, including schema design, integrations, automations, dashboards, sample data, and rollout guardrails.
 
+> [!hint] Quick Links
+> - [[Relationships_Overview]]
+> - Core tables: [[Account_Master]], [[People_Team]], [[Business_Context]], [[Strategic_Objectives]], [[MuleSoft_Capabilities]], [[Value_Streams]], [[API_Portfolio]], [[Platform_Health_Metrics]], [[Initiatives]], [[Risk_Register]], [[Stakeholder_Outcomes]], [[Engagement_Log]]
+
 ## Phase Snapshot
 | Phase | Focus | Priority | Estimated Effort |
 | --- | --- | --- | --- |
