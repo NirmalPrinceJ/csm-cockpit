@@ -247,6 +247,86 @@ cssclass: implementation-template
 
 ---
 
+## Visual Presentation Views
+
+> [!tip] Use this storyboard when previewing the Coda doc with executives or during enablement sessions. Duplicate the callouts you need into meeting notes for quick reference.
+
+### Account_Master Views
+> [!success] **All Accounts**
+> - Layout: table with zebra striping
+> - Columns: `Account_Name`, `Contract_Type`, `Health_Score`, `Renewal_Risk_Level`, `ARR`
+> - Visual cues: apply color scale to `Health_Score`, badge styling on `Renewal_Risk_Level`
+>
+> [!example] **By CSM**
+> - Layout: grouped table
+> - Group header chips show `Account_Count`, `Total_ARR`
+> - Suggested presenter flow: drill into any red/yellow risk group during reviews
+>
+> [!warning] **Renewal Risk**
+> - Layout: filtered table with countdown column (`Days_To_Renewal`)
+> - Add conditional row highlight (critical = red, at risk = amber)
+> - Optional sparkline column tracking `Health_Score_Trend_30d`
+>
+> [!info] **Health Score**
+> - Layout: table sorted ascending
+> - Add gauge column type for `Health_Score`
+> - Pair with quick filter toggles for `Contract_Type`
+
+### Strategic_Objectives Views
+> [!success] **All Objectives**
+> - Layout: table with section headers per `Strategic_Pillar`
+> - Include `Progress_Percent` as progress bar column
+>
+> [!warning] **At Risk**
+> - Layout: red-themed gallery cards emphasizing `Health_Indicator`
+> - Presenter note: talk through mitigation actions, link to `Initiatives`
+>
+> [!example] **By Strategic Pillar**
+> - Layout: grouped cards, colored pillar badges
+> - Section footer rollups: `Business_Value_USD` totals
+>
+> [!quote] **High Impact**
+> - Layout: table sorted by `MuleSoft_Impact_Score` desc
+> - Add KPI chip summarizing total impact at top of view
+
+### Platform Health & APIs
+> [!danger] **Critical Metrics**
+> - Layout: card grid with red border
+> - Display: `Metric_Name`, `Current_Value`, `Health_Status`, `Alert_Status`
+> - Encourage real-time updates during incident calls
+>
+> [!tip] **API Health Heatmap**
+> - Layout: grid with color-coded cells
+> - Include quick filter toggles for `Environment` and `Business_Criticality`
+>
+> [!summary] **Critical APIs**
+> - Layout: table with icon column for `Health_Status`
+> - Add stacked bar for `Monthly_Transactions` vs `Error_Rate_Percent`
+
+### Value & Initiatives
+> [!success] **High Impact Value Streams**
+> - Layout: gallery cards sorted by `Total_Business_Value_USD`
+> - Include metric chips (`Cycle_Time_Reduction_Percent`, `Annual_Cost_Savings_USD`)
+>
+> [!example] **Initiatives · High ROI**
+> - Layout: table sorted by `Three_Year_ROI_Percent`
+> - Add status badge (`Status`, `Phase`) and timeline column (`Start_Date` → `Target_Completion_Date`)
+>
+> [!warning] **Risk Register · Critical & High**
+> - Layout: stacked table grouped by `Risk_Level`
+> - Presenter prompt: highlight `Mitigation_Initiative` link for each item
+
+### Stakeholder & Engagement
+> [!success] **Stakeholder Outcomes · Achieved**
+> - Layout: gallery with success callouts
+> - Include before/after metrics using mini progress bars
+>
+> [!tip] **Engagement Log · Recent 90 Days**
+> - Layout: timeline view (calendar or timeline block)
+> - Highlight `Sentiment` and `Relationship_Depth_Score`
+
+---
+
 ## Testing & QA Checklist
 
 ### Database Integrity
