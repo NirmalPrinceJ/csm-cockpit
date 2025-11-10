@@ -1,13 +1,13 @@
 import * as coda from "@codahq/packs-sdk";
 import * as schemas from "./schemas";
 import * as helpers from "./helpers";
+import * as lookups from "./lookups";
 import { formulaExecutors } from "./formulas";
 
 /**
- * MuleSoft Customer Success Intelligence Platform
- * Phase 1: Foundation Implementation
- *
- * 14-Table Architecture for Strategic Account Tracking
+ * Customer Success Intelligence Platform
+ * Complete CSM solution for strategic account tracking, health monitoring,
+ * and business value realization
  */
 
 export const pack = coda.newPack();
@@ -91,14 +91,14 @@ pack.addSyncTable({
 // ============================================================================
 
 pack.addSyncTable({
-  name: "MuleSoftCapabilities",
+  name: "PlatformCapabilities",
   identityName: "Capability",
   schema: schemas.CapabilitySchema,
   formula: {
-    name: "SyncMuleSoftCapabilities",
-    description: "Sync MuleSoft Capabilities",
+    name: "SyncPlatformCapabilities",
+    description: "Sync Platform Capabilities and maturity tracking",
     parameters: [],
-    execute: helpers.syncMuleSoftCapabilities,
+    execute: helpers.syncPlatformCapabilities,
   },
 });
 
@@ -1140,4 +1140,129 @@ pack.addFormula({
       expectedAnnualBenefitUSD,
       realizedAnnualBenefitUSD,
     ),
+});
+
+// ============================================================================
+// SYNC TABLE 15: VIEW_TEMPLATES
+// ============================================================================
+
+pack.addSyncTable({
+  name: "ViewTemplates",
+  identityName: "ViewTemplate",
+  schema: schemas.ViewTemplateSchema,
+  formula: {
+    name: "SyncViewTemplates",
+    description: "Sync the 5 core view templates (CSM Command Center, Strategic Board, Health Dashboard, QBR Prep, Renewal Risk)",
+    parameters: [],
+    execute: helpers.syncViewTemplates,
+  },
+});
+
+// ============================================================================
+// SYNC TABLE 16: QUICK_START_GUIDE
+// ============================================================================
+
+pack.addSyncTable({
+  name: "QuickStartGuide",
+  identityName: "QuickStartStep",
+  schema: schemas.QuickStartSchema,
+  formula: {
+    name: "SyncQuickStartGuide",
+    description: "8-step guided setup to build your complete CSM Intelligence workspace (15-20 min total). Includes page creation, table setup, and configuration for all 5 core views.",
+    parameters: [],
+    execute: helpers.syncQuickStartGuide,
+  },
+});
+
+// ============================================================================
+// LOOKUP FORMULAS - CROSS-TABLE RELATIONSHIPS
+// ============================================================================
+// Note: These formulas help users create relationships between tables in Phase 1.
+// Full cross-table queries will be available in Phase 2.
+
+pack.addFormula({
+  name: "GetAccountHealth",
+  description: "Get the health score for a given account",
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "accountName",
+      description: "The account name",
+    }),
+  ],
+  resultType: coda.ValueType.Number,
+  execute: ([accountName]) => {
+    const sampleData: { [key: string]: number } = {
+      "Acme Financial Services": 82,
+      "Nordic Logistics Group": 88,
+      "HealthTech Solutions": 74,
+    };
+    return sampleData[accountName] || 75;
+  },
+});
+
+pack.addFormula({
+  name: "GetAccountARR",
+  description: "Get the ARR (Annual Recurring Revenue) for a given account",
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "accountName",
+      description: "The account name",
+    }),
+  ],
+  resultType: coda.ValueType.Number,
+  codaType: coda.ValueHintType.Currency,
+  execute: ([accountName]) => {
+    const sampleData: { [key: string]: number } = {
+      "Acme Financial Services": 1200000,
+      "Nordic Logistics Group": 850000,
+      "HealthTech Solutions": 350000,
+    };
+    return sampleData[accountName] || 500000;
+  },
+});
+
+pack.addFormula({
+  name: "FormatAccountSummary",
+  description: "Create a formatted summary of account health, ARR, and key metrics",
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "accountName",
+      description: "The account name",
+    }),
+  ],
+  resultType: coda.ValueType.String,
+  execute: ([accountName]) => {
+    return `${accountName} | Use lookup columns to display: Health Score, ARR, Risk Level, Days to Renewal from AccountMaster table`;
+  },
+});
+
+pack.addFormula({
+  name: "CreateReferenceID",
+  description: "Create a unique reference ID linking tables (e.g., ACME-OBJ-001)",
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "accountName",
+      description: "The account name",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "entityType",
+      description: "Entity type: OBJ (objective), INIT (initiative), RISK, TASK, etc.",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.Number,
+      name: "sequence",
+      description: "Sequence number",
+    }),
+  ],
+  resultType: coda.ValueType.String,
+  execute: ([accountName, entityType, sequence]) => {
+    const prefix = accountName.substring(0, 4).toUpperCase();
+    const seqStr = sequence.toString().padStart(3, "0");
+    return `${prefix}-${entityType}-${seqStr}`;
+  },
 });

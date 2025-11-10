@@ -1,17 +1,43 @@
 {
-  "name": "mulesoft-csm-intelligence",
+  "name": "csm-intelligence-platform",
   "version": "1.0.0",
-  "description": "Strategic Account Tracking for MuleSoft Customer Success",
+  "description": "Complete Customer Success Intelligence Platform for strategic account tracking, health monitoring, and business value realization. 16 sync tables + helper formulas + guided setup.",
   "main": "src/pack.ts",
   "scripts": {
     "build": "coda build src/pack.ts",
     "validate": "coda validate src/pack.ts",
     "execute": "coda execute src/pack.ts",
-    "test": "TS_NODE_TRANSPILE_ONLY=1 npx ts-node src/testing.ts"
+    "test": "TS_NODE_TRANSPILE_ONLY=1 npx ts-node src/testing.ts",
+    "upload": "coda upload src/pack.ts"
   },
-  "keywords": ["coda", "pack", "mulesoft", "csm", "customer-success"],
-  "author": "MuleSoft CSM Team",
+  "keywords": [
+    "coda",
+    "pack",
+    "customer-success",
+    "csm",
+    "account-health",
+    "strategic-tracking",
+    "business-value",
+    "qbr",
+    "renewal-risk",
+    "platform-health",
+    "roi-tracking",
+    "engagement-tracking",
+    "success-plan",
+    "saas",
+    "b2b"
+  ],
+  "author": "Customer Success Team",
+  "contributors": [
+    "Customer Success Managers",
+    "Solutions Architects",
+    "Customer Success Operations"
+  ],
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/customer-success/csm-intelligence-platform"
+  },
   "type": "commonjs",
   "dependencies": {
     "@codahq/packs-sdk": "^1.12.1"

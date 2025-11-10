@@ -31,6 +31,8 @@ async function main(): Promise<void> {
     "executiveSponsorCustomer",
     "executiveSponsorMuleSoft",
     "customerAnnualRevenue",
+    "compositeHealthScore",
+    "engagementCadenceStatus",
   ].forEach((field) =>
     assert.ok(field in account, `Account_Master missing field ${field}`),
   );
@@ -69,6 +71,15 @@ async function main(): Promise<void> {
 
   const risks = (await runSync(syncRiskRegister) as any).result as Record<string, unknown>[];
   assert.ok(risks[0].hasOwnProperty("potentialBusinessImpactUsd"), "Risk_Register potentialBusinessImpactUsd missing");
+
+  const engagements = (await runSync(syncEngagementLog) as any).result as Record<string, unknown>[];
+  [
+    "engagementScore",
+    "cadenceStatus",
+    "nextEngagementDate",
+  ].forEach((field) =>
+    assert.ok(engagements[0].hasOwnProperty(field), `Engagement_Log missing field ${field}`),
+  );
 
   const successPlans = (await runSync(syncSuccessPlanTracker) as any).result as Record<string, unknown>[];
   assert.ok(successPlans[0].hasOwnProperty("expansionOpportunityUsd"), "Success_Plan_Tracker expansionOpportunityUsd missing");
