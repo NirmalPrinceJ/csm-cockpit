@@ -1,0 +1,158 @@
+{
+  "accounts": [
+    {
+      "accountName": "Example Corp",
+      "industryVertical": "Technology",
+      "industrySubSector": "SaaS",
+      "contractType": "Premium Support",
+      "contractStartDate": "2024-01-01",
+      "renewalDate": "2025-01-01",
+      "arr": 500000,
+      "customerSuccessManager": "Your Name",
+      "accountExecutive": "AE Name",
+      "healthScore": 80,
+      "riskLevel": "Low",
+      "geography": "North America"
+    }
+  ],
+  "people": [
+    {
+      "fullName": "Your Name",
+      "email": "your.name@company.com",
+      "role": "CSM",
+      "department": "Customer Success",
+      "region": "North America",
+      "account": "Example Corp",
+      "activeStatus": true
+    }
+  ],
+  "businessContext": [
+    {
+      "account": "Example Corp",
+      "businessModel": "B2B SaaS Platform",
+      "digitalMaturity": "Transforming",
+      "strategicPrioritiesCurrentYear": "Digital transformation, Customer experience",
+      "keyBusinessChallenges": "Legacy system migration, Data integration"
+    }
+  ],
+  "objectives": [
+    {
+      "account": "Example Corp",
+      "objectiveName": "Reduce API Latency",
+      "strategicPillar": "Technical Excellence",
+      "businessDriver": "Performance",
+      "businessValueUsd": 250000,
+      "status": "In Progress",
+      "progressPercent": 60,
+      "targetDate": "2025-03-31"
+    }
+  ],
+  "capabilities": [
+    {
+      "account": "Example Corp",
+      "capabilityName": "API Management",
+      "capabilityDomain": "Integration",
+      "currentMaturity": "Managed",
+      "targetMaturity": "Optimized",
+      "priority": "High"
+    }
+  ],
+  "valueStreams": [
+    {
+      "account": "Example Corp",
+      "valueStreamName": "Order Processing",
+      "businessProcess": "Order to Cash",
+      "cycleTimeBaselineHours": 48,
+      "cycleTimeCurrentHours": 24,
+      "annualCostSavingsUsd": 150000
+    }
+  ],
+  "apis": [
+    {
+      "account": "Example Corp",
+      "apiName": "Customer API",
+      "apiCategory": "System API",
+      "environment": "Production",
+      "monthlyTransactions": 1000000,
+      "businessCriticality": "Critical"
+    }
+  ],
+  "metrics": [
+    {
+      "account": "Example Corp",
+      "metricName": "API Uptime",
+      "metricCategory": "Reliability",
+      "currentValue": 99.9,
+      "targetValue": 99.99,
+      "healthStatus": "Acceptable"
+    }
+  ],
+  "initiatives": [
+    {
+      "account": "Example Corp",
+      "initiativeName": "Platform Migration Phase 1",
+      "businessDriver": "Cost Reduction",
+      "priority": "High",
+      "status": "In Progress",
+      "investmentUsd": 100000,
+      "expectedBenefitsUsd": 300000,
+      "targetCompletionDate": "2025-06-30"
+    }
+  ],
+  "risks": [
+    {
+      "account": "Example Corp",
+      "riskTitle": "Resource Constraints",
+      "riskCategory": "Resource",
+      "impactLevel": 3,
+      "probabilityLevel": 3,
+      "riskLevel": "Medium",
+      "status": "Active - In Progress",
+      "mitigationStrategy": "Hire additional staff or contractors"
+    }
+  ],
+  "outcomes": [
+    {
+      "account": "Example Corp",
+      "outcomeName": "Improved Customer Satisfaction",
+      "stakeholder": "CTO",
+      "targetedBusinessOutcome": "Reduce support tickets by 30%",
+      "baselineValue": 100,
+      "currentValue": 75,
+      "targetValue": 70
+    }
+  ],
+  "engagements": [
+    {
+      "account": "Example Corp",
+      "engagementDate": "2024-11-15",
+      "engagementType": "QBR",
+      "sentiment": "Positive",
+      "attendeesMuleSoft": "CSM, SA",
+      "attendeesCustomer": "CTO, VP Engineering",
+      "keyTopicsDiscussed": "Q4 objectives, Platform health",
+      "nextEngagementDate": "2025-02-15"
+    }
+  ],
+  "successPlans": [
+    {
+      "account": "Example Corp",
+      "planPeriod": "Q1 2025",
+      "objectives": "Complete migration, Improve uptime",
+      "keyInitiatives": "Platform upgrade, Training program",
+      "successMetrics": "99.99% uptime, <100ms latency",
+      "renewalRiskLevel": "Low"
+    }
+  ],
+  "tasks": [
+    {
+      "account": "Example Corp",
+      "taskTitle": "Schedule Q1 QBR",
+      "priority": "High",
+      "status": "Open",
+      "assignedTo": "Your Name",
+      "dueDate": "2025-01-15",
+      "taskType": "Engagement"
+    }
+  ]
+}

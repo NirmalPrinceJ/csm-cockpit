@@ -33,51 +33,87 @@ export async function syncPeopleTeam(
       role: "CSM",
       department: "Customer Success",
       region: "EMEA",
+      account: "Gard AS",
       activeStatus: true,
     },
     {
       personId: "P002",
+      fullName: "Nirmal John",
+      email: "nirmal.john@company.com",
+      role: "CSM",
+      department: "Customer Success",
+      region: "EMEA",
+      account: "Wates Group",
+      activeStatus: true,
+    },
+    {
+      personId: "P003",
+      fullName: "Nirmal John",
+      email: "nirmal.john@company.com",
+      role: "CSM",
+      department: "Customer Success",
+      region: "EMEA",
+      account: "Birkenstock",
+      activeStatus: true,
+    },
+    {
+      personId: "P004",
       fullName: "Prathamesh Pable",
       email: "prathamesh.pable@company.com",
       role: "CSM",
       department: "Customer Success",
       region: "EMEA",
+      account: "CSL Seqirus",
       activeStatus: true,
     },
     {
-      personId: "P003",
+      personId: "P005",
       fullName: "Emilie Moen",
       email: "emilie.moen@company.com",
       role: "Account Executive",
       department: "Sales",
       region: "EMEA",
+      account: "Gard AS",
       activeStatus: true,
     },
     {
-      personId: "P004",
+      personId: "P006",
       fullName: "Ritchie Neil",
       email: "ritchie.neil@company.com",
       role: "Account Executive",
       department: "Sales",
       region: "EMEA",
+      account: "Wates Group",
       activeStatus: true,
     },
     {
-      personId: "P005",
+      personId: "P007",
       fullName: "Dominic Holroyd",
       email: "dominic.holroyd@company.com",
       role: "Account Executive",
       department: "Sales",
       region: "EMEA",
+      account: "CSL Seqirus",
       activeStatus: true,
     },
     {
-      personId: "P006",
+      personId: "P008",
+      fullName: "Lisa Martinez",
+      email: "lisa.martinez@company.com",
+      role: "Account Executive",
+      department: "Sales",
+      region: "EMEA",
+      account: "Birkenstock",
+      activeStatus: true,
+    },
+    {
+      personId: "P009",
       fullName: "Christian Tome",
       email: "christian.tome@gard.no",
       role: "Executive Sponsor",
       department: "Executive",
       region: "EMEA",
+      account: "Gard AS",
       activeStatus: true,
     },
   ];
@@ -270,7 +306,7 @@ export async function syncBusinessContext(
   const sampleContext = [
     {
       contextId: "CTX-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       businessModel: "Investment Banking and Capital Markets",
       marketPosition: "Top-tier regional investment bank",
       operatingEnvironment: "Highly regulated financial services sector",
@@ -285,7 +321,7 @@ export async function syncBusinessContext(
     },
     {
       contextId: "CTX-002",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       businessModel: "Global freight forwarding and supply chain orchestration",
       marketPosition: "Market leader in multimodal logistics across Nordics",
       operatingEnvironment: "High competition, rising fuel costs, sustainability regulations",
@@ -302,7 +338,7 @@ export async function syncBusinessContext(
     },
     {
       contextId: "CTX-003",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       businessModel: "Integrated care network with value-based care contracts",
       marketPosition: "Emerging innovator in patient experience technology",
       operatingEnvironment: "HIPAA-regulated healthcare with focus on interoperability",
@@ -332,7 +368,7 @@ export async function syncStrategicObjectives(
   const sampleObjectives = [
     {
       objectiveId: "OBJ-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       strategicPillar: "Digital Transformation",
       objectiveName: "Modernize Claims Processing",
       description: "Reduce claims processing time by 50% through API-enabled workflows",
@@ -352,7 +388,7 @@ export async function syncStrategicObjectives(
     },
     {
       objectiveId: "OBJ-002",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       strategicPillar: "Customer Experience",
       objectiveName: "Launch Customer Self-Service Portal",
       description: "Enable customers to submit claims and track status online",
@@ -372,7 +408,7 @@ export async function syncStrategicObjectives(
     },
     {
       objectiveId: "OBJ-003",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       strategicPillar: "Compliance/Regulatory",
       objectiveName: "Strengthen SEC Reporting Automation",
       description: "Automate regulatory reporting workflows and reduce manual reconciliation effort",
@@ -392,7 +428,7 @@ export async function syncStrategicObjectives(
     },
     {
       objectiveId: "OBJ-004",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       strategicPillar: "Operational Resilience",
       objectiveName: "Unified Shipment Visibility",
       description: "Provide real-time multimodal shipment tracking to customers",
@@ -412,7 +448,7 @@ export async function syncStrategicObjectives(
     },
     {
       objectiveId: "OBJ-005",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       strategicPillar: "Sustainability/ESG",
       objectiveName: "Carbon Footprint Reporting Automation",
       description: "Automate emissions calculations across all logistics modes",
@@ -432,7 +468,7 @@ export async function syncStrategicObjectives(
     },
     {
       objectiveId: "OBJ-006",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       strategicPillar: "Customer Experience",
       objectiveName: "Launch Patient 360 Portal",
       description: "Seamless patient onboarding, appointment scheduling, and care plan visibility",
@@ -452,7 +488,7 @@ export async function syncStrategicObjectives(
     },
     {
       objectiveId: "OBJ-007",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       strategicPillar: "Operational Resilience",
       objectiveName: "Reduce Readmission Rates",
       description: "Integrate predictive analytics for 30-day readmission risk scoring",
@@ -486,7 +522,7 @@ export async function syncPlatformCapabilities(
   const sampleCapabilities = [
     {
       capabilityId: "CAP-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       capabilityDomain: "Integration",
       capabilityName: "Claims Data Integration",
       description: "Real-time integration between claims system and core policy system",
@@ -507,7 +543,7 @@ export async function syncPlatformCapabilities(
     },
     {
       capabilityId: "CAP-002",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       capabilityDomain: "API Management",
       capabilityName: "External Partner API Gateway",
       description: "Secure API gateway for partner integrations (surveyors, repairers)",
@@ -528,7 +564,7 @@ export async function syncPlatformCapabilities(
     },
     {
       capabilityId: "CAP-003",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       capabilityDomain: "Data Governance",
       capabilityName: "Regulatory Reporting Data Hub",
       description: "Centralized data services for SEC and regulatory filings",
@@ -549,7 +585,7 @@ export async function syncPlatformCapabilities(
     },
     {
       capabilityId: "CAP-101",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       capabilityDomain: "Integration",
       capabilityName: "Multimodal Shipment Orchestration",
       description: "Connects road, rail, air, and sea systems for unified tracking",
@@ -570,7 +606,7 @@ export async function syncPlatformCapabilities(
     },
     {
       capabilityId: "CAP-102",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       capabilityDomain: "Analytics",
       capabilityName: "Sustainability Metrics Hub",
       description: "Carbon footprint calculation service across transport modes",
@@ -591,7 +627,7 @@ export async function syncPlatformCapabilities(
     },
     {
       capabilityId: "CAP-201",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       capabilityDomain: "Integration",
       capabilityName: "FHIR API Gateway",
       description: "Unified FHIR-based integration layer across EHR and care platforms",
@@ -612,7 +648,7 @@ export async function syncPlatformCapabilities(
     },
     {
       capabilityId: "CAP-202",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       capabilityDomain: "Analytics",
       capabilityName: "Predictive Care Insights",
       description: "AI-driven risk scoring for readmissions and chronic care management",
@@ -647,7 +683,7 @@ export async function syncValueStreams(
   const sampleStreams = [
     {
       streamId: "VS-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       valueStreamName: "Claims Processing Workflow",
       businessProcess: "End-to-end claims lifecycle management",
       processOwner: "Claims Operations Director",
@@ -671,7 +707,7 @@ export async function syncValueStreams(
     },
     {
       streamId: "VS-002",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       valueStreamName: "Regulatory Reporting",
       businessProcess: "Quarterly and annual SEC filings",
       processOwner: "Regulatory Reporting Director",
@@ -695,7 +731,7 @@ export async function syncValueStreams(
     },
     {
       streamId: "VS-101",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       valueStreamName: "Shipment Visibility Hub",
       businessProcess: "Cross-modal tracking and predictive ETA",
       processOwner: "Director of Customer Operations",
@@ -719,7 +755,7 @@ export async function syncValueStreams(
     },
     {
       streamId: "VS-102",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       valueStreamName: "Carbon Reporting Workflow",
       businessProcess: "Automated ESG emissions calculation",
       processOwner: "Head of Sustainability",
@@ -743,7 +779,7 @@ export async function syncValueStreams(
     },
     {
       streamId: "VS-201",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       valueStreamName: "Patient 360 Experience",
       businessProcess: "Patient onboarding and engagement",
       processOwner: "Director of Patient Experience",
@@ -767,7 +803,7 @@ export async function syncValueStreams(
     },
     {
       streamId: "VS-202",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       valueStreamName: "Readmission Prevention",
       businessProcess: "Predictive care coordination",
       processOwner: "Chief Nursing Officer",
@@ -805,7 +841,7 @@ export async function syncAPIPortfolio(
   const sampleAPIs = [
     {
       apiId: "API-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       apiName: "Claims Submission API",
       apiType: "Experience API",
       apiVersion: "v2.1",
@@ -831,7 +867,7 @@ export async function syncAPIPortfolio(
     },
     {
       apiId: "API-002",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       apiName: "Policy Lookup API",
       apiType: "Process API",
       apiVersion: "v1.3",
@@ -857,7 +893,7 @@ export async function syncAPIPortfolio(
     },
     {
       apiId: "API-003",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       apiName: "Regulatory Data Service",
       apiType: "System API",
       apiVersion: "v1.0",
@@ -883,7 +919,7 @@ export async function syncAPIPortfolio(
     },
     {
       apiId: "API-101",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       apiName: "Shipment Tracking API",
       apiType: "Experience API",
       apiVersion: "v3.2",
@@ -909,7 +945,7 @@ export async function syncAPIPortfolio(
     },
     {
       apiId: "API-102",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       apiName: "Carbon Metrics API",
       apiType: "Process API",
       apiVersion: "v1.4",
@@ -935,7 +971,7 @@ export async function syncAPIPortfolio(
     },
     {
       apiId: "API-201",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       apiName: "Patient 360 API",
       apiType: "Experience API",
       apiVersion: "v2.0",
@@ -961,7 +997,7 @@ export async function syncAPIPortfolio(
     },
     {
       apiId: "API-202",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       apiName: "Care Plan Orchestration API",
       apiType: "Process API",
       apiVersion: "v1.5",
@@ -1001,7 +1037,7 @@ export async function syncPlatformHealthMetrics(
   const sampleMetrics = [
     {
       metricId: "MET-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       metricCategory: "Performance",
       metricName: "API Average Response Time",
       metricType: "Latency",
@@ -1019,7 +1055,7 @@ export async function syncPlatformHealthMetrics(
     },
     {
       metricId: "MET-002",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       metricCategory: "Reliability",
       metricName: "Platform Uptime",
       metricType: "Availability",
@@ -1037,7 +1073,7 @@ export async function syncPlatformHealthMetrics(
     },
     {
       metricId: "MET-003",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       metricCategory: "Adoption",
       metricName: "Digital Claims Submission Rate",
       metricType: "Business",
@@ -1055,7 +1091,7 @@ export async function syncPlatformHealthMetrics(
     },
     {
       metricId: "MET-101",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       metricCategory: "Performance",
       metricName: "Predictive ETA Accuracy",
       metricType: "Operational",
@@ -1073,7 +1109,7 @@ export async function syncPlatformHealthMetrics(
     },
     {
       metricId: "MET-102",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       metricCategory: "Reliability",
       metricName: "Tracking API Uptime",
       metricType: "Technical",
@@ -1091,7 +1127,7 @@ export async function syncPlatformHealthMetrics(
     },
     {
       metricId: "MET-103",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       metricCategory: "Cost",
       metricName: "Cost per Shipment - Premium Service",
       metricType: "Business",
@@ -1109,7 +1145,7 @@ export async function syncPlatformHealthMetrics(
     },
     {
       metricId: "MET-201",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       metricCategory: "Adoption",
       metricName: "Patient Portal Adoption",
       metricType: "Business",
@@ -1127,7 +1163,7 @@ export async function syncPlatformHealthMetrics(
     },
     {
       metricId: "MET-202",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       metricCategory: "Quality",
       metricName: "Readmission Risk Score Accuracy",
       metricType: "Operational",
@@ -1145,7 +1181,7 @@ export async function syncPlatformHealthMetrics(
     },
     {
       metricId: "MET-203",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       metricCategory: "Security",
       metricName: "FHIR API Compliance Score",
       metricType: "Technical",
@@ -1177,7 +1213,7 @@ export async function syncInitiatives(
   const sampleInitiatives = [
     {
       initiativeId: "INIT-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       initiativeName: "Claims API Modernization - Phase 1",
       initiativeType: "Technical Modernization",
       linkedObjectives: "OBJ-001",
@@ -1207,7 +1243,7 @@ export async function syncInitiatives(
     },
     {
       initiativeId: "INIT-002",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       initiativeName: "Customer Portal Enablement",
       initiativeType: "API Development",
       linkedObjectives: "OBJ-002",
@@ -1237,7 +1273,7 @@ export async function syncInitiatives(
     },
     {
       initiativeId: "INIT-003",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       initiativeName: "Regulatory Data Hub Automation",
       initiativeType: "Governance Enhancement",
       linkedObjectives: "OBJ-003",
@@ -1267,7 +1303,7 @@ export async function syncInitiatives(
     },
     {
       initiativeId: "INIT-101",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       initiativeName: "Shipment Visibility Platform Expansion",
       initiativeType: "Platform Migration",
       linkedObjectives: "OBJ-004",
@@ -1297,7 +1333,7 @@ export async function syncInitiatives(
     },
     {
       initiativeId: "INIT-102",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       initiativeName: "ESG Automation Program",
       initiativeType: "Analytics Enablement",
       linkedObjectives: "OBJ-005",
@@ -1327,7 +1363,7 @@ export async function syncInitiatives(
     },
     {
       initiativeId: "INIT-201",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       initiativeName: "Patient 360 Rollout",
       initiativeType: "API Development",
       linkedObjectives: "OBJ-006",
@@ -1357,7 +1393,7 @@ export async function syncInitiatives(
     },
     {
       initiativeId: "INIT-202",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       initiativeName: "Readmission Prediction Engine",
       initiativeType: "Analytics Enablement",
       linkedObjectives: "OBJ-007",
@@ -1401,7 +1437,7 @@ export async function syncRiskRegister(
   const sampleRisks = [
     {
       riskId: "RISK-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       riskCategory: "Technical",
       riskTitle: "Legacy System Integration Complexity",
       description: "Mainframe system lacks modern API capabilities, requiring custom connectors",
@@ -1426,7 +1462,7 @@ export async function syncRiskRegister(
     },
     {
       riskId: "RISK-002",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       riskCategory: "Compliance",
       riskTitle: "Regulatory Data Quality Gaps",
       description: "Incomplete reconciliation between regulatory data hub and finance systems",
@@ -1451,7 +1487,7 @@ export async function syncRiskRegister(
     },
     {
       riskId: "RISK-101",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       riskCategory: "Platform Risk",
       riskTitle: "Carrier API Rate Limiting",
       description: "Rail partner imposes strict rate thresholds causing throttling during peak hours",
@@ -1476,7 +1512,7 @@ export async function syncRiskRegister(
     },
     {
       riskId: "RISK-102",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       riskCategory: "Compliance",
       riskTitle: "Incomplete Emissions Data",
       description: "Ocean carriers missing CO2 data feeds for CSRD reporting",
@@ -1501,7 +1537,7 @@ export async function syncRiskRegister(
     },
     {
       riskId: "RISK-201",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       riskCategory: "Security",
       riskTitle: "FHIR API Security Gaps",
       description: "Pen test identified inconsistent OAuth scopes across FHIR resources",
@@ -1526,7 +1562,7 @@ export async function syncRiskRegister(
     },
     {
       riskId: "RISK-202",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       riskCategory: "Operational",
       riskTitle: "Clinician Adoption Lag",
       description: "Care teams slow to adopt predictive risk dashboards",
@@ -1565,7 +1601,7 @@ export async function syncStakeholderOutcomes(
   const sampleOutcomes = [
     {
       outcomeId: "OUT-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       stakeholderType: "Business Executive",
       stakeholderName: "Erik Svensson",
       stakeholderRole: "CTO",
@@ -1587,7 +1623,7 @@ export async function syncStakeholderOutcomes(
     },
     {
       outcomeId: "OUT-002",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       stakeholderType: "Executive Leadership",
       stakeholderName: "Emily Carter",
       stakeholderRole: "CFO",
@@ -1609,7 +1645,7 @@ export async function syncStakeholderOutcomes(
     },
     {
       outcomeId: "OUT-101",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       stakeholderType: "External Customer",
       stakeholderName: "Premium Logistics Customers",
       stakeholderRole: "Enterprise clients",
@@ -1631,7 +1667,7 @@ export async function syncStakeholderOutcomes(
     },
     {
       outcomeId: "OUT-102",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       stakeholderType: "Executive Leadership",
       stakeholderName: "Jonas Nilsson",
       stakeholderRole: "Chief Sustainability Officer",
@@ -1653,7 +1689,7 @@ export async function syncStakeholderOutcomes(
     },
     {
       outcomeId: "OUT-201",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       stakeholderType: "External Customer",
       stakeholderName: "Patients",
       stakeholderRole: "Primary care patients",
@@ -1675,7 +1711,7 @@ export async function syncStakeholderOutcomes(
     },
     {
       outcomeId: "OUT-202",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       stakeholderType: "Internal Business Unit",
       stakeholderName: "Clinical Operations",
       stakeholderRole: "Care Coordinators",
@@ -1713,7 +1749,7 @@ export async function syncEngagementLog(
   const engagementSeed = [
     {
       engagementId: "ENG-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       engagementDate: "2024-10-28",
       engagementType: "QBR - Quarterly Business Review",
       attendeesVendor: "Sarah Chen (CSM), Marcus Johnson (SA)",
@@ -1733,7 +1769,7 @@ export async function syncEngagementLog(
     },
     {
       engagementId: "ENG-002",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       engagementDate: "2024-11-05",
       engagementType: "Technical Workshop",
       attendeesVendor: "Marcus Johnson (SA)",
@@ -1751,7 +1787,7 @@ export async function syncEngagementLog(
     },
     {
       engagementId: "ENG-101",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       engagementDate: "2024-10-22",
       engagementType: "Executive Sponsor Call",
       attendeesVendor: "Sarah Chen (CSM), David Nguyen (Exec Sponsor)",
@@ -1769,7 +1805,7 @@ export async function syncEngagementLog(
     },
     {
       engagementId: "ENG-102",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       engagementDate: "2024-11-04",
       engagementType: "Health Check",
       attendeesVendor: "Marcus Johnson (SA)",
@@ -1787,7 +1823,7 @@ export async function syncEngagementLog(
     },
     {
       engagementId: "ENG-201",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       engagementDate: "2024-10-18",
       engagementType: "Success Plan Review",
       attendeesVendor: "Sarah Chen (CSM), Marcus Johnson (SA)",
@@ -1805,7 +1841,7 @@ export async function syncEngagementLog(
     },
     {
       engagementId: "ENG-202",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       engagementDate: "2024-11-03",
       engagementType: "Technical Review",
       attendeesVendor: "Marcus Johnson (SA)",
@@ -1859,7 +1895,7 @@ export async function syncSuccessPlanTracker(
   const samplePlans = [
     {
       successPlanId: "SP-Q4-2024",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       planPeriod: "Q4 2024",
       planStatus: "Active",
       creationDate: "2024-10-01",
@@ -1878,7 +1914,7 @@ export async function syncSuccessPlanTracker(
     },
     {
       successPlanId: "SP-Q1-2025",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       planPeriod: "Q1 2025",
       planStatus: "Active",
       creationDate: "2024-09-20",
@@ -1897,7 +1933,7 @@ export async function syncSuccessPlanTracker(
     },
     {
       successPlanId: "SP-H1-2025",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       planPeriod: "FY2025 H1",
       planStatus: "Active",
       creationDate: "2024-10-05",
@@ -1930,7 +1966,7 @@ export async function syncActivitiesTasks(
   const sampleTasks = [
     {
       taskId: "TASK-001",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       taskTitle: "Schedule Phase 2 Architecture Review",
       taskDescription: "Coordinate calendar availability for technical deep-dive on Phase 2 requirements",
       taskType: "QBR Preparation",
@@ -1949,7 +1985,7 @@ export async function syncActivitiesTasks(
     },
     {
       taskId: "TASK-002",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       taskTitle: "Provide API Analytics Dashboard Access",
       taskDescription: "Set up Anypoint Monitoring dashboard access for Acme technical team",
       taskType: "Documentation",
@@ -1968,7 +2004,7 @@ export async function syncActivitiesTasks(
     },
     {
       taskId: "TASK-003",
-      account: "Acme Financial Services",
+      account: "Gard AS",
       taskTitle: "Review Error Handling Code",
       taskDescription: "Code review session with Acme dev team on retry patterns and circuit breaker implementation",
       taskType: "Health Check",
@@ -1987,7 +2023,7 @@ export async function syncActivitiesTasks(
     },
     {
       taskId: "TASK-101",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       taskTitle: "Implement API Caching Layer",
       taskDescription: "Deploy caching solution to mitigate carrier rate limiting during peak hours",
       taskType: "Health Check",
@@ -2006,7 +2042,7 @@ export async function syncActivitiesTasks(
     },
     {
       taskId: "TASK-102",
-      account: "Nordic Logistics Group",
+      account: "Wates Group",
       taskTitle: "Finalize Carbon Data Vendor Integration",
       taskDescription: "Align connectivity requirements and testing plan with carbon accounting vendor",
       taskType: "Initiative Planning",
@@ -2025,7 +2061,7 @@ export async function syncActivitiesTasks(
     },
     {
       taskId: "TASK-201",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       taskTitle: "Deliver Clinician Training Playbook",
       taskDescription: "Create enablement materials to drive adoption of patient portal and predictive dashboards",
       taskType: "Training",
@@ -2044,7 +2080,7 @@ export async function syncActivitiesTasks(
     },
     {
       taskId: "TASK-202",
-      account: "HealthTech Solutions",
+      account: "CSL Seqirus",
       taskTitle: "Run Security Policy Refresh Workshop",
       taskDescription: "Review FHIR security gaps and agree on automated enforcement approach",
       taskType: "Risk Mitigation",

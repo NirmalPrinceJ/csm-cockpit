@@ -43,11 +43,12 @@ export const PersonSchema = coda.makeObjectSchema({
       codaType: coda.ValueHintType.SelectList,
       options: ["EMEA", "Americas", "APAC"],
     },
+    account: { type: coda.ValueType.String },
     activeStatus: { type: coda.ValueType.Boolean },
   },
   idProperty: "personId",
   displayProperty: "fullName",
-  featuredProperties: ["fullName", "email", "role", "department"],
+  featuredProperties: ["fullName", "email", "role", "department", "account"],
 });
 
 // ===========================================================================

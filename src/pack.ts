@@ -2,6 +2,7 @@ import * as coda from "@codahq/packs-sdk";
 import * as schemas from "./schemas";
 import * as helpers from "./helpers";
 import * as lookups from "./lookups";
+import * as imports from "./imports";
 import { formulaExecutors } from "./formulas";
 
 /**
@@ -1171,6 +1172,279 @@ pack.addSyncTable({
     description: "8-step guided setup to build your complete CSM Intelligence workspace (15-20 min total). Includes page creation, table setup, and configuration for all 5 core views.",
     parameters: [],
     execute: helpers.syncQuickStartGuide,
+  },
+});
+
+// ============================================================================
+// IMPORT ACTIONS - TEXT/JSON DATA LOADING
+// ============================================================================
+
+pack.addFormula({
+  name: "ImportAccounts",
+  description: "Import accounts from JSON text. Paste JSON array or single object with account data.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing account data (single object or array)",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const accounts = await imports.importAccountMaster([jsonData], context);
+    return `✅ Imported ${accounts.length} account(s): ${accounts.map(a => a.accountName).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportPeople",
+  description: "Import people from JSON text. Paste JSON array or single object with people data.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing people data (single object or array)",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const people = await imports.importPeopleTeam([jsonData], context);
+    return `✅ Imported ${people.length} person(s): ${people.map(p => p.fullName).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportBusinessContext",
+  description: "Import business context from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing business context data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const contexts = await imports.importBusinessContext([jsonData], context);
+    return `✅ Imported ${contexts.length} business context(s): ${contexts.map(c => c.account).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportObjectives",
+  description: "Import strategic objectives from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing strategic objectives data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const objectives = await imports.importStrategicObjectives([jsonData], context);
+    return `✅ Imported ${objectives.length} objective(s): ${objectives.map(o => o.objectiveName).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportInitiatives",
+  description: "Import initiatives from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing initiatives data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const initiatives = await imports.importInitiatives([jsonData], context);
+    return `✅ Imported ${initiatives.length} initiative(s): ${initiatives.map(i => i.initiativeName).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportRisks",
+  description: "Import risks from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing risks data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const risks = await imports.importRisks([jsonData], context);
+    return `✅ Imported ${risks.length} risk(s): ${risks.map(r => r.riskTitle).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportEngagements",
+  description: "Import engagement log entries from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing engagement data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const engagements = await imports.importEngagements([jsonData], context);
+    return `✅ Imported ${engagements.length} engagement(s)`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportCapabilities",
+  description: "Import platform capabilities from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing capabilities data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const capabilities = await imports.importCapabilities([jsonData], context);
+    return `✅ Imported ${capabilities.length} capability(s): ${capabilities.map(c => c.capabilityName).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportValueStreams",
+  description: "Import value streams from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing value streams data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const streams = await imports.importValueStreams([jsonData], context);
+    return `✅ Imported ${streams.length} value stream(s): ${streams.map(s => s.valueStreamName).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportAPIs",
+  description: "Import APIs from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing APIs data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const apis = await imports.importAPIs([jsonData], context);
+    return `✅ Imported ${apis.length} API(s): ${apis.map(a => a.apiName).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportMetrics",
+  description: "Import platform health metrics from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing metrics data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const metrics = await imports.importMetrics([jsonData], context);
+    return `✅ Imported ${metrics.length} metric(s): ${metrics.map(m => m.metricName).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportOutcomes",
+  description: "Import stakeholder outcomes from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing outcomes data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const outcomes = await imports.importOutcomes([jsonData], context);
+    return `✅ Imported ${outcomes.length} outcome(s): ${outcomes.map(o => o.outcomeName).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportSuccessPlans",
+  description: "Import success plans from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing success plans data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const plans = await imports.importSuccessPlans([jsonData], context);
+    return `✅ Imported ${plans.length} success plan(s)`;
+  },
+});
+
+pack.addFormula({
+  name: "ImportTasks",
+  description: "Import tasks from JSON text.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON string containing tasks data",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    const tasks = await imports.importTasks([jsonData], context);
+    return `✅ Imported ${tasks.length} task(s): ${tasks.map(t => t.taskTitle).join(", ")}`;
+  },
+});
+
+pack.addFormula({
+  name: "BatchImportAll",
+  description: "Batch import data for multiple tables at once. Provide JSON with keys: accounts, people, businessContext, objectives, capabilities, valueStreams, apis, metrics, initiatives, risks, outcomes, engagements, successPlans, tasks.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON object with keys for each table type (accounts, people, etc.)",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    return await imports.batchImportAllTables([jsonData], context);
   },
 });
 
