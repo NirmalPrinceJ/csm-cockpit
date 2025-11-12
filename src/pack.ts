@@ -3,6 +3,7 @@ import * as schemas from "./schemas";
 import * as helpers from "./helpers";
 import * as lookups from "./lookups";
 import * as imports from "./imports";
+import * as upsert from "./upsert";
 import { formulaExecutors } from "./formulas";
 
 /**
@@ -1445,6 +1446,283 @@ pack.addFormula({
   ],
   execute: async ([jsonData], context) => {
     return await imports.batchImportAllTables([jsonData], context);
+  },
+});
+
+// ============================================================================
+// UNIVERSAL UPSERT ACTION - ONE ACTION FOR ALL TABLES
+// ============================================================================
+
+pack.addFormula({
+  name: "UpsertData",
+  description: "Universal action to add or modify records in ANY table. Single action replaces all 14+ import actions. Provide JSON with 'table' (accounts/people/objectives/etc) and 'data' (single object or array). Example: {\"table\": \"accounts\", \"data\": {\"accountName\": \"Gard AS\", \"arr\": 850000}}",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "jsonData",
+      description: "JSON with 'table' and 'data'. Example: {\"table\": \"accounts\", \"data\": {\"accountName\": \"Gard AS\", \"arr\": 850000, \"healthScore\": 80}}",
+    }),
+  ],
+  execute: async ([jsonData], context) => {
+    return await upsert.upsertData([jsonData], context);
+  },
+});
+
+// ============================================================================
+// BUTTON-FRIENDLY ACTIONS - FOR CODA BUTTONS
+// ============================================================================
+
+pack.addFormula({
+  name: "AddOrModifyAccount",
+  description: "Add or modify an account record. Use in a Coda button for easy data entry.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "accountName",
+      description: "Account name (required)",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.Number,
+      name: "arr",
+      description: "Annual Recurring Revenue",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.Number,
+      name: "healthScore",
+      description: "Health score (0-100)",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "customerSuccessManager",
+      description: "CSM name",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "accountExecutive",
+      description: "AE name",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "riskLevel",
+      description: "Risk level (Low/Medium/High/Critical)",
+      optional: true,
+    }),
+  ],
+  execute: async ([accountName, arr, healthScore, csm, ae, riskLevel], context) => {
+    const data = {
+      accountName,
+      arr,
+      healthScore,
+      customerSuccessManager: csm,
+      accountExecutive: ae,
+      riskLevel,
+    };
+
+    const jsonData = JSON.stringify({ table: "accounts", data });
+    return await upsert.upsertData([jsonData], context);
+  },
+});
+
+pack.addFormula({
+  name: "AddOrModifyObjective",
+  description: "Add or modify a strategic objective. Use in a Coda button for easy data entry.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "account",
+      description: "Account name (required)",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "objectiveName",
+      description: "Objective name (required)",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "status",
+      description: "Status (Planning/In Progress/Completed/On Hold)",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.Number,
+      name: "progressPercent",
+      description: "Progress percentage (0-100)",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.Number,
+      name: "businessValueUsd",
+      description: "Business value in USD",
+      optional: true,
+    }),
+  ],
+  execute: async ([account, objectiveName, status, progressPercent, businessValueUsd], context) => {
+    const data = {
+      account,
+      objectiveName,
+      status,
+      progressPercent,
+      businessValueUsd,
+    };
+
+    const jsonData = JSON.stringify({ table: "objectives", data });
+    return await upsert.upsertData([jsonData], context);
+  },
+});
+
+pack.addFormula({
+  name: "AddOrModifyEngagement",
+  description: "Add or modify an engagement record. Use in a Coda button to log customer interactions.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "account",
+      description: "Account name (required)",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.Date,
+      name: "engagementDate",
+      description: "Engagement date (required)",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "engagementType",
+      description: "Type (QBR/Check-in/Executive Briefing/Technical Workshop)",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "sentiment",
+      description: "Sentiment (Very Positive/Positive/Neutral/Negative/Very Negative)",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "keyTopics",
+      description: "Key topics discussed",
+      optional: true,
+    }),
+  ],
+  execute: async ([account, engagementDate, engagementType, sentiment, keyTopics], context) => {
+    const data = {
+      account,
+      engagementDate: engagementDate.toISOString().split('T')[0],
+      engagementType,
+      sentiment,
+      keyTopicsDiscussed: keyTopics,
+    };
+
+    const jsonData = JSON.stringify({ table: "engagements", data });
+    return await upsert.upsertData([jsonData], context);
+  },
+});
+
+pack.addFormula({
+  name: "AddOrModifyRisk",
+  description: "Add or modify a risk record. Use in a Coda button to track account risks.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "account",
+      description: "Account name (required)",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "riskTitle",
+      description: "Risk title (required)",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "riskLevel",
+      description: "Risk level (Low/Medium/High/Critical)",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "riskCategory",
+      description: "Category (Technical/Financial/Resource/Strategic/Operational)",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "mitigationStrategy",
+      description: "How to mitigate this risk",
+      optional: true,
+    }),
+  ],
+  execute: async ([account, riskTitle, riskLevel, riskCategory, mitigationStrategy], context) => {
+    const data = {
+      account,
+      riskTitle,
+      riskLevel,
+      riskCategory,
+      mitigationStrategy,
+    };
+
+    const jsonData = JSON.stringify({ table: "risks", data });
+    return await upsert.upsertData([jsonData], context);
+  },
+});
+
+pack.addFormula({
+  name: "AddOrModifyTask",
+  description: "Add or modify a task. Use in a Coda button to create action items.",
+  isAction: true,
+  resultType: coda.ValueType.String,
+  parameters: [
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "account",
+      description: "Account name (required)",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "taskTitle",
+      description: "Task title (required)",
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "priority",
+      description: "Priority (Critical/High/Medium/Low)",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.String,
+      name: "assignedTo",
+      description: "Assigned to (person name)",
+      optional: true,
+    }),
+    coda.makeParameter({
+      type: coda.ParameterType.Date,
+      name: "dueDate",
+      description: "Due date",
+      optional: true,
+    }),
+  ],
+  execute: async ([account, taskTitle, priority, assignedTo, dueDate], context) => {
+    const data = {
+      account,
+      taskTitle,
+      priority,
+      assignedTo,
+      dueDate: dueDate ? dueDate.toISOString().split('T')[0] : undefined,
+    };
+
+    const jsonData = JSON.stringify({ table: "tasks", data });
+    return await upsert.upsertData([jsonData], context);
   },
 });
 
