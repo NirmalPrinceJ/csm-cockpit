@@ -1,0 +1,500 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2024-11-09",
+  "description": "Coda Table Relationship Mappings for MuleSoft CSM Intelligence Platform",
+  "tables": {
+    "PeopleTeam": {
+      "id": "Person",
+      "primaryKey": "personId",
+      "displayProperty": "fullName",
+      "relationships": {
+        "referencedBy": [
+          {
+            "table": "AccountMaster",
+            "fields": ["customerSuccessManager", "accountExecutive", "solutionsArchitect"]
+          }
+        ]
+      }
+    },
+    "AccountMaster": {
+      "id": "Account",
+      "primaryKey": "accountId",
+      "displayProperty": "accountName",
+      "relationships": {
+        "oneToOne": [
+          {
+            "targetTable": "BusinessContext",
+            "sourceField": "accountId",
+            "targetField": "account"
+          }
+        ],
+        "oneToMany": [
+          {
+            "targetTable": "StrategicObjectives",
+            "sourceField": "accountId",
+            "targetField": "account"
+          },
+          {
+            "targetTable": "MuleSoftCapabilities",
+            "sourceField": "accountId",
+            "targetField": "account"
+          },
+          {
+            "targetTable": "ValueStreams",
+            "sourceField": "accountId",
+            "targetField": "account"
+          },
+          {
+            "targetTable": "APIPortfolio",
+            "sourceField": "accountId",
+            "targetField": "account"
+          },
+          {
+            "targetTable": "PlatformHealthMetrics",
+            "sourceField": "accountId",
+            "targetField": "account"
+          },
+          {
+            "targetTable": "Initiatives",
+            "sourceField": "accountId",
+            "targetField": "account"
+          },
+          {
+            "targetTable": "RiskRegister",
+            "sourceField": "accountId",
+            "targetField": "account"
+          },
+          {
+            "targetTable": "StakeholderOutcomes",
+            "sourceField": "accountId",
+            "targetField": "account"
+          },
+          {
+            "targetTable": "EngagementLog",
+            "sourceField": "accountId",
+            "targetField": "account"
+          },
+          {
+            "targetTable": "SuccessPlanTracker",
+            "sourceField": "accountId",
+            "targetField": "account"
+          },
+          {
+            "targetTable": "ActivitiesTasks",
+            "sourceField": "accountId",
+            "targetField": "account"
+          }
+        ]
+      }
+    },
+    "BusinessContext": {
+      "id": "Context",
+      "primaryKey": "contextId",
+      "displayProperty": "account",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          }
+        ]
+      }
+    },
+    "StrategicObjectives": {
+      "id": "Objective",
+      "primaryKey": "objectiveId",
+      "displayProperty": "objectiveName",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          }
+        ],
+        "manyToMany": [
+          {
+            "sourceField": "linkedCapabilities",
+            "targetTable": "MuleSoftCapabilities",
+            "targetField": "linkedObjectives",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "linkedValueStreams",
+            "targetTable": "ValueStreams",
+            "targetField": "linkedObjectives",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "linkedInitiatives",
+            "targetTable": "Initiatives",
+            "targetField": "linkedObjectives",
+            "junctionType": "commaSeparated"
+          }
+        ]
+      }
+    },
+    "MuleSoftCapabilities": {
+      "id": "Capability",
+      "primaryKey": "capabilityId",
+      "displayProperty": "capabilityName",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          }
+        ],
+        "manyToMany": [
+          {
+            "sourceField": "linkedObjectives",
+            "targetTable": "StrategicObjectives",
+            "targetField": "linkedCapabilities",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "supportingValueStreams",
+            "targetTable": "ValueStreams",
+            "targetField": "enabledCapabilities",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "linkedInitiatives",
+            "targetTable": "Initiatives",
+            "targetField": "linkedCapabilities",
+            "junctionType": "commaSeparated"
+          }
+        ]
+      }
+    },
+    "ValueStreams": {
+      "id": "ValueStream",
+      "primaryKey": "streamId",
+      "displayProperty": "valueStreamName",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          }
+        ],
+        "manyToMany": [
+          {
+            "sourceField": "linkedObjectives",
+            "targetTable": "StrategicObjectives",
+            "targetField": "linkedValueStreams",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "enabledCapabilities",
+            "targetTable": "MuleSoftCapabilities",
+            "targetField": "supportingValueStreams",
+            "junctionType": "commaSeparated"
+          }
+        ]
+      }
+    },
+    "APIPortfolio": {
+      "id": "API",
+      "primaryKey": "apiId",
+      "displayProperty": "apiName",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          }
+        ],
+        "manyToMany": [
+          {
+            "sourceField": "linkedValueStreams",
+            "targetTable": "ValueStreams",
+            "targetField": "apisConsumed",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "linkedObjectives",
+            "targetTable": "StrategicObjectives",
+            "targetField": "linkedInitiatives",
+            "junctionType": "commaSeparated"
+          }
+        ]
+      }
+    },
+    "PlatformHealthMetrics": {
+      "id": "Metric",
+      "primaryKey": "metricId",
+      "displayProperty": "metricName",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          },
+          {
+            "sourceField": "linkedCapability",
+            "targetTable": "MuleSoftCapabilities",
+            "targetField": "capabilityId"
+          },
+          {
+            "sourceField": "linkedObjective",
+            "targetTable": "StrategicObjectives",
+            "targetField": "objectiveId"
+          }
+        ]
+      }
+    },
+    "Initiatives": {
+      "id": "Initiative",
+      "primaryKey": "initiativeId",
+      "displayProperty": "initiativeName",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          }
+        ],
+        "manyToMany": [
+          {
+            "sourceField": "linkedObjectives",
+            "targetTable": "StrategicObjectives",
+            "targetField": "linkedInitiatives",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "linkedCapabilities",
+            "targetTable": "MuleSoftCapabilities",
+            "targetField": "linkedInitiatives",
+            "junctionType": "commaSeparated"
+          }
+        ]
+      }
+    },
+    "RiskRegister": {
+      "id": "Risk",
+      "primaryKey": "riskId",
+      "displayProperty": "riskTitle",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          },
+          {
+            "sourceField": "affectedCapability",
+            "targetTable": "MuleSoftCapabilities",
+            "targetField": "capabilityId"
+          },
+          {
+            "sourceField": "mitigationInitiative",
+            "targetTable": "Initiatives",
+            "targetField": "initiativeId"
+          }
+        ],
+        "manyToMany": [
+          {
+            "sourceField": "affectedAPIs",
+            "targetTable": "APIPortfolio",
+            "targetField": "apiId",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "affectedValueStreams",
+            "targetTable": "ValueStreams",
+            "targetField": "streamId",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "linkedObjectivesAtRisk",
+            "targetTable": "StrategicObjectives",
+            "targetField": "objectiveId",
+            "junctionType": "commaSeparated"
+          }
+        ]
+      }
+    },
+    "StakeholderOutcomes": {
+      "id": "Outcome",
+      "primaryKey": "outcomeId",
+      "displayProperty": "outcomeStatement",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          },
+          {
+            "sourceField": "linkedObjective",
+            "targetTable": "StrategicObjectives",
+            "targetField": "objectiveId"
+          },
+          {
+            "sourceField": "linkedValueStream",
+            "targetTable": "ValueStreams",
+            "targetField": "streamId"
+          }
+        ],
+        "manyToMany": [
+          {
+            "sourceField": "linkedAPIServices",
+            "targetTable": "APIPortfolio",
+            "targetField": "apiId",
+            "junctionType": "commaSeparated"
+          }
+        ]
+      }
+    },
+    "EngagementLog": {
+      "id": "Engagement",
+      "primaryKey": "engagementId",
+      "displayProperty": "engagementType",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          }
+        ],
+        "oneToMany": [
+          {
+            "targetTable": "ActivitiesTasks",
+            "sourceField": "engagementId",
+            "targetField": "linkedEngagement"
+          }
+        ]
+      }
+    },
+    "SuccessPlanTracker": {
+      "id": "SuccessPlan",
+      "primaryKey": "successPlanId",
+      "displayProperty": "planPeriod",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          }
+        ],
+        "manyToMany": [
+          {
+            "sourceField": "objectivesAddressed",
+            "targetTable": "StrategicObjectives",
+            "targetField": "objectiveId",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "keyInitiatives",
+            "targetTable": "Initiatives",
+            "targetField": "initiativeId",
+            "junctionType": "commaSeparated"
+          },
+          {
+            "sourceField": "top3Risks",
+            "targetTable": "RiskRegister",
+            "targetField": "riskId",
+            "junctionType": "commaSeparated"
+          }
+        ]
+      }
+    },
+    "ActivitiesTasks": {
+      "id": "Task",
+      "primaryKey": "taskId",
+      "displayProperty": "taskTitle",
+      "relationships": {
+        "manyToOne": [
+          {
+            "sourceField": "account",
+            "targetTable": "AccountMaster",
+            "targetField": "accountId"
+          },
+          {
+            "sourceField": "linkedEngagement",
+            "targetTable": "EngagementLog",
+            "targetField": "engagementId"
+          },
+          {
+            "sourceField": "linkedInitiative",
+            "targetTable": "Initiatives",
+            "targetField": "initiativeId"
+          },
+          {
+            "sourceField": "linkedRisk",
+            "targetTable": "RiskRegister",
+            "targetField": "riskId"
+          }
+        ]
+      }
+    }
+  },
+  "integrationPoints": {
+    "healthScoreCalculation": {
+      "description": "Composite health score calculation",
+      "formula": "Composite_Health(platformHealth, businessValue, engagement, alignment)",
+      "dependencies": [
+        "PlatformHealthMetrics",
+        "StakeholderOutcomes",
+        "EngagementLog",
+        "StrategicObjectives"
+      ],
+      "weights": {
+        "platformHealth": 0.35,
+        "businessValueRealization": 0.30,
+        "stakeholderEngagement": 0.20,
+        "strategicAlignment": 0.15
+      }
+    },
+    "riskAssessment": {
+      "description": "Risk score and level calculation",
+      "formula": "Risk_Score(impactScore, probabilityScore) → Risk_Level_FromScore(riskScore)",
+      "dependencies": [
+        "RiskRegister"
+      ]
+    },
+    "valueRealization": {
+      "description": "Business value calculation from value streams",
+      "formula": "Business_Value(annualCostSavings, revenueImpact)",
+      "dependencies": [
+        "ValueStreams",
+        "APIPortfolio"
+      ]
+    },
+    "engagementCadence": {
+      "description": "Next engagement date and cadence status",
+      "formula": "Next_Engagement_Due(lastEngagementDate, cadenceDays) → Cadence_Status()",
+      "dependencies": [
+        "EngagementLog"
+      ]
+    }
+  },
+  "dataFlow": {
+    "accountToStrategic": {
+      "path": ["AccountMaster", "StrategicObjectives", "MuleSoftCapabilities", "ValueStreams"],
+      "type": "hierarchical"
+    },
+    "strategicToExecution": {
+      "path": ["StrategicObjectives", "Initiatives", "ActivitiesTasks"],
+      "type": "workflow"
+    },
+    "riskToMitigation": {
+      "path": ["RiskRegister", "Initiatives", "ActivitiesTasks"],
+      "type": "mitigation"
+    },
+    "engagementToTasks": {
+      "path": ["EngagementLog", "ActivitiesTasks"],
+      "type": "actionItems"
+    }
+  }
+}
+

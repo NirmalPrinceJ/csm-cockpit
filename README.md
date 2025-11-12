@@ -140,3 +140,40 @@ Refactored from multi-agent architecture to standard Coda Pack structure:
 - ✅ Featured properties for better UX
 - ✅ Proper file organization at root level
 - ✅ Standard naming conventions
+
+## Documentation & Integration
+
+### FigJam Design & Table Mappings
+
+Complete architecture documentation and relationship mappings:
+
+- **[FIGJAM_DESIGN.md](FIGJAM_DESIGN.md)** - Complete architecture visualization with all 29 relationships mapped
+- **[TABLE_MAPPINGS.json](TABLE_MAPPINGS.json)** - Machine-readable relationship definitions (JSON format)
+- **[ARCHITECTURE_DIAGRAM.md](ARCHITECTURE_DIAGRAM.md)** - Visual Mermaid diagrams for import into FigJam or documentation
+- **[CODA_SETUP_GUIDE.md](CODA_SETUP_GUIDE.md)** - Step-by-step instructions for wiring relationships in Coda
+- **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Quick lookup guide for table relationships
+- **[INTEGRATION_SUMMARY.md](INTEGRATION_SUMMARY.md)** - Overview and summary of all integration work
+
+### Validation Tools
+
+- **[scripts/validate-mappings.js](scripts/validate-mappings.js)** - Validation script for table mappings
+  ```bash
+  node scripts/validate-mappings.js
+  ```
+
+### Key Integration Points
+
+1. **Health Score Calculation** - Composite health from Platform, Business Value, Engagement, and Alignment
+2. **Risk Assessment Flow** - Risk scoring and mitigation tracking
+3. **Value Realization Flow** - Business value calculation from value streams and APIs
+4. **Engagement Cadence** - Next engagement dates and cadence status tracking
+
+### Relationship Summary
+
+- **Total Relationships:** 53
+  - 1:1 Relationships: 1
+  - 1:Many Relationships: 12
+  - Many:1 Relationships: 21
+  - Many:Many Relationships: 19
+
+All relationships are documented with field mappings and integration logic.
